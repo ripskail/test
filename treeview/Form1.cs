@@ -135,16 +135,13 @@ namespace treeview
 			//MessageBox.Show(treeNode.Text+ " " + treeNode.Parent + " " + treeNode.Level);
 			int lev = treeNode.Level;
 			string path = filename;
-			
+			FileStream file1 = new FileStream(path, FileMode.OpenOrCreate);
+				file1.Close();
 			if (File.Exists(path))
 			{
 				string s = treeNode.Text.Insert(0, new string(' ', lev));
 				File.AppendAllText(path, s + Environment.NewLine, Encoding.UTF8);
 				//sw.WriteLine(treeNode.Text.PadLeft(lev, pad));
-			}
-			else {
-				FileStream file1 = new FileStream(path, FileMode.OpenOrCreate);
-				file1.Close();
 			}
 				foreach (TreeNode tn in treeNode.Nodes)
 			{
